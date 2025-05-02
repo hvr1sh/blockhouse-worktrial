@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\begin{document}
+
+\section*{Supplementary Code}
+Code: \url{https://github.com/hvr1sh/blockhouse-worktrial}
+
+\section*{1. Motivation Behind Measuring OFI at Multiple Depth Levels of the Order Book}
+The motivation to measure Order Flow Imbalance (OFI) at more than one depth comes from our observation that a best-level (Level 00) only OFI would overlook useful information deeper in the Limit Order Book (LOB). The empirical results in this paper are expressed in terms of high correlations between OFIs at different levels, but are interpreted by us to be in accordance with non-redundancy. The deeper levels can, in fact, have explanatory power in terms of price movement, especially in the case of very liquid or low-volatility assets in front of which gigantic orders rest at large depths. By leveraging a combination of different levels in the LOB, our model captures a fuller and more detailed representation of buying and selling pressure and has higher explanatory power of return dynamics, while being less susceptible to the danger of noise through top-level concentration.
+
+\section*{2. The Authors Use Lasso Regression Instead of OLS to Estimate Cross-Impact}
+The authors apply Lasso regression rather than ordinary least squares (OLS) in cross-asset effect estimation due to dimensionality problems. There are $N^2$ possible OFI predictors for $N$ assets in a multi-asset universe, making OLS computationally unstable and statistically unsound due to overfitting and multicollinearity. These issues are resolved by Lasso, which incorporates a sparsity-inducing penalty that automatically retains only salient cross-asset relationships and sets unnecessary predictors to zero. This eases model complexity and improves interpretability, in addition to ensuring model stability in short time windows when observations are fewer than predictors. Lasso thus facilitates the selection of a sparse and interpretable subset of influential cross-asset OFI terms.
+
+\section*{3. OFI as a Superior Predictor of Short-Term Returns Compared to Trade Volume}
+OFI is a superior predictor of short-term returns compared to volume since it is a more explicit measure of market pressure. While trade volume aggregates trade size without distinguishing between buys and sells, or representing activity on either the bid or offer sides of the book, OFI measures the net imbalance between buyer- and seller-driven orders and aggregates both price movement and order magnitude on both sides of the book. This makes it extremely useful in gauging supply and demand pressure in real time. The paper indicates that OFI captures a large percentage of return variability—up to 87\% in some cases—whereas volume-based models are sluggish to react. This supports the argument that OFI is a superior measure of market participant directionality compared to volume alone and is therefore well suited to modeling high-frequency price changes.
+
+\end{document}
